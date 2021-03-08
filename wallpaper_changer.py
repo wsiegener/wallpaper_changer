@@ -7,7 +7,7 @@ import os
 url = "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/FD/GEOCOLOR/5424x5424.jpg"       # GOES-EAST Full
 # url = "https://cdn.star.nesdis.noaa.gov/GOES16/ABI/CONUS/GEOCOLOR/5000x3000.jpg"  # Continenetal US
 
-img_url = r"C:\PATH\TO\SCRIPT\latest.jpg"
+script_path = os.getcwd()
 
 def update_image():
     with requests.get(url) as req:
@@ -15,7 +15,7 @@ def update_image():
             img.write(req.content)
 
     # set image as background
-    ctypes.windll.user32.SystemParametersInfoW(20, 0, img_url, 0)
+    ctypes.windll.user32.SystemParametersInfoW(20, 0, script_path + "\latest.jpg", 0)
 
     print("Updating image:", str(datetime.datetime.now()))
 
